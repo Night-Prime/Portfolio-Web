@@ -11,10 +11,13 @@ import { animations } from "../shared/animation";
 const Projects: React.FC = () => {
   const boxReveal = useScrollAnimation(animations.boxReveal);
   return (
-    <motion.div className="h-screen w-full flex flex-row justify-center items-center font-SF overflow-y-hidden">
+    <motion.div
+      {...boxReveal}
+      className="h-screen w-full flex flex-row justify-center items-center font-SF overflow-y-hidden"
+    >
       <motion.div className="w-[86%] h-[82%] grid grid-cols-12 grid-rows-12 gap-3">
         <motion.div
-          {...boxReveal}
+          // {...boxReveal}
           //   transition={{ duration: 1, delay: getDelay(0) }}
           className="col-span-7 row-span-7 bg-gray-100 rounded-2xl "
         >
@@ -31,7 +34,7 @@ const Projects: React.FC = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          {...boxReveal}
+          // {...boxReveal}
           //   transition={{ duration: 1, delay: getDelay(1) }}
           className="col-span-5 row-span-12 text-center bg-gray-100  rounded-2xl relative"
         >
@@ -75,7 +78,7 @@ const Projects: React.FC = () => {
           />
         </motion.div>
         <motion.div
-          {...boxReveal}
+          // {...boxReveal}
           //   transition={{ duration: 1, delay: getDelay(2) }}
           className="col-span-7 row-span-5 grid grid-cols-2 gap-3"
         >

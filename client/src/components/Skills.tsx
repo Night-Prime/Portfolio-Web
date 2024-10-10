@@ -24,7 +24,7 @@ const Skillscard: React.FC<skillProps> = ({ skill }) => {
     <motion.div
       whileHover={{ y: -10 }}
       transition={{ duration: 0.3 }}
-      className="cursor-pointer bg-gray-200 text-red-600 h-16 w-1/4 m-2 rounded-full y-2 px-4 flex items-center justify-center font-bold font-Flux text-md"
+      className="cursor-pointer bg-gray-200 text-red-600 h-16 w-1/4 m-2 rounded-full y-2 px-4 flex items-center justify-center font-bold font-Flux text-[16px]"
     >
       {skill}
     </motion.div>
@@ -64,7 +64,7 @@ const Skills: React.FC = () => {
           {/* <motion.h1 className="w-full text-start text-red-600 text-xl font-semibold">
             Dhaniel's skills
           </motion.h1> */}
-          <motion.h1 className="w-3/4 text-start text-2xl font-semibold font-Flux">
+          <motion.h1 className="w-3/4 text-start text-3xl font-semibold font-Flux">
             "however, i do have a very particular set of skills, skills i have
             acquired over a long career, skills that makes me an indispensable
             asset for people like you.."

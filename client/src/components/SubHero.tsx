@@ -16,7 +16,7 @@ const SubHero: React.FC = () => {
           </motion.h1>
           <motion.h2
             {...childReveal}
-            className="text-md text-center w-3/4 font-Flux"
+            className="text-[16px] text-center w-3/4 font-Flux"
           >
             A Creative dynamo with a Swiss Army knife of skills: Problem
             Solving, Idea Generation, Coding, Landscape photography & Sharp
