@@ -23,13 +23,17 @@ const Hero: React.FC = () => {
 
       <motion.div
         variants={containerVariants}
-        className="w-[96%] flex flex-row justify-between items-center text-white font-bold cursor-pointer"
+        className="w-[96%] flex flex-row justify-center md:justify-between items-center text-white font-bold cursor-pointer"
       >
-        <motion.h2 variants={childVariants}>Creative</motion.h2>
+        <motion.h2 className="hidden md:block" variants={childVariants}>
+          Creative
+        </motion.h2>
         <motion.h1 variants={childVariants} className="text-6xl">
           Dhaniel.
         </motion.h1>
-        <motion.h2 variants={childVariants}>Engineer</motion.h2>
+        <motion.h2 className="hidden md:block" variants={childVariants}>
+          Engineer
+        </motion.h2>
       </motion.div>
     </motion.div>
   );

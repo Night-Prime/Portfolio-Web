@@ -8,6 +8,11 @@ export const animations = {
                 staggerChildren: 0.5,
             },
         },
+        exit: {
+            opacity: 0,
+            x: "100%", // Slide back to the right
+            transition: { type: "spring", stiffness: 50, damping: 12 },
+        },
     },
     childVariants: {
         hidden: { opacity: 0, y: 20 },

@@ -21,10 +21,10 @@ const Card: React.FC<CardProps> = ({ title, description, icon, link }) => {
     >
       <div className="flex flex-col justify-center items-start w-full">
         {icon && <div className="mb-4">{icon}</div>}
-        <h3 className="text-xl font-bold mb-4">{title}</h3>
+        <h3 className="text-md md:text-xl font-bold mb-4">{title}</h3>
 
         {description && (
-          <p className="text-gray-600 text-[16px] font-light mb-4 font-Flux">
+          <p className="text-gray-600 text-xs md:text-[16px] font-light mb-4 font-Flux">
             {description}
           </p>
         )}
