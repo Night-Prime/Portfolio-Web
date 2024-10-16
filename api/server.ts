@@ -9,6 +9,7 @@ const server = http.createServer(app);
 const startServer = async (): Promise<void> => {
     try {
         server.listen(PORT, () => {
+            logger.info(`Dhaniel Service running on PORT:${PORT}`)
             console.log(`Dhaniel Service running on PORT:${PORT}`)
         })
     } catch (error) {
