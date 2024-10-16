@@ -1,15 +1,12 @@
 import ArrowRight from "../assets/icons/ArrowRight";
 import useScrollAnimation from "../hooks/useScrollAnimation";
-import mayflower from "../assets/images/Event booking.png";
-import sheryham from "../assets/images/Sheryham.png";
-import brailoo from "../assets/images/brailoo.png";
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { animations } from "../shared/animation";
 
 const Projects: React.FC = () => {
-  const boxReveal = useScrollAnimation(animations.boxReveal);
+  const boxReveal = useScrollAnimation(animations.revealChildren);
   return (
     <motion.div
       {...boxReveal}
@@ -73,9 +70,9 @@ const Projects: React.FC = () => {
               </Link>
             </motion.div>
           </motion.div>
-          <img
-            src={mayflower}
-            alt={mayflower}
+          <motion.img
+            src="https://ik.imagekit.io/0y99xuz0yp/Event%20booking.webp?updatedAt=1729069370905"
+            alt="Mayflower screenshot"
             className="object-cover w-[100%] h-[100%] object-top rounded-2xl"
           />
         </motion.div>
@@ -111,9 +108,9 @@ const Projects: React.FC = () => {
                 </Link>
               </motion.div>
             </motion.div>
-            <img
-              src={brailoo}
-              alt={brailoo}
+            <motion.img
+              src="https://ik.imagekit.io/0y99xuz0yp/brailoo.png?updatedAt=1729068718941"
+              alt="brailoo screenshot"
               className="object-cover w-full h-full object-center rounded-2xl"
             />
           </motion.div>
@@ -144,9 +141,9 @@ const Projects: React.FC = () => {
                 </Link>
               </motion.div>
             </motion.div>
-            <img
-              src={sheryham}
-              alt={sheryham}
+            <motion.img
+              src="https://ik.imagekit.io/0y99xuz0yp/Sheryham.webp?updatedAt=1729069555738"
+              alt="sheryham screenshot"
               className="object-cover w-full h-full object-center rounded-2xl"
             />
           </motion.div>

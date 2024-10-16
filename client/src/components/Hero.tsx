@@ -1,5 +1,4 @@
 import React from "react";
-import background from "../assets/images/PXL_20240716_190032958.jpg";
 import { motion } from "framer-motion";
 import { animations } from "../shared/animation";
 
@@ -15,7 +14,7 @@ const Hero: React.FC = () => {
       className="relative h-screen w-full flex items-center justify-center font-Flux overflow-y-hidden"
     >
       <motion.img
-        src={background}
+        src="https://ik.imagekit.io/0y99xuz0yp/PXL_20240716_190032958.jpg?updatedAt=1729068720070"
         alt="background image of me"
         className="absolute top-0 left-0 w-full h-full object-cover"
       />

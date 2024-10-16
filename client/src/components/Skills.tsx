@@ -47,8 +47,8 @@ const Skills: React.FC = () => {
           className="hidden h-full w-1/4 md:flex flex-col justify-between gap-6 items-end"
         >
           <motion.img
-            src={me}
-            alt={me}
+            src="https://ik.imagekit.io/0y99xuz0yp/Dhaniel-5-2023-1.webp?updatedAt=1729069362547"
+            alt="Dhaniel Picture"
             className="object-cover h-[80%] w-full rounded-2xl"
           />
           <motion.div
