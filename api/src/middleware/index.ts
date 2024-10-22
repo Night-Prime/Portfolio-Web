@@ -7,6 +7,9 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import passport from 'passport';
 import { corsOptions, sessionOptions } from '../config/index'
+import router from '../routes';
+import { errorHandler } from './errorHandler';
+import { authenticate } from './auth';
 
 export const setupMiddleware = (app: express.Application): void => {
     app.use(cors(corsOptions));
@@ -19,4 +22,6 @@ export const setupMiddleware = (app: express.Application): void => {
     app.use(compression());
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use('/api/v1', router);
+    app.use(errorHandler);
 };

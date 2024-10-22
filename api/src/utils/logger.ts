@@ -5,7 +5,7 @@ import { NODE_ENV } from '../config';
 const { combine, timestamp, errors, splat, json, colorize } = winston.format;
 
 /**
- * @description Setting up logging mechanism for my service using winston
+ * @description Setting up logging mechanism for the service using winston
  */
 
 const logger = winston.createLogger({

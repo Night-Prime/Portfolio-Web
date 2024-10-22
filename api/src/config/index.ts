@@ -23,3 +23,4 @@ export const sessionOptions: SessionOptions = {
         maxAge: 360000
     }
 }
+

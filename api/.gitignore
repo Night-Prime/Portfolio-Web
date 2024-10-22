@@ -16,4 +16,7 @@ package-lock.json
 .env.production.local
 
 .env
+combined.log
+error.logexception.log
+rejections.log
 

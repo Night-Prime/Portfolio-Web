@@ -2,15 +2,16 @@ import http from 'http';
 import createApp from "./app";
 import { PORT } from "./src/config";
 import logger from './src/utils/logger';
+import { initializeModels } from './src/models';
 
 const app = createApp();
 const server = http.createServer(app);
 
 const startServer = async (): Promise<void> => {
     try {
+        await initializeModels();
         server.listen(PORT, () => {
             logger.info(`Dhaniel Service running on PORT:${PORT}`)
-            console.log(`Dhaniel Service running on PORT:${PORT}`)
         })
     } catch (error) {
         logger.error('Failed to start server:', error);
@@ -28,6 +29,7 @@ process.on('uncaughtException', (error: Error) => {
     gracefulShutdown(1);
 });
 
+//note: would need set a Restart mechanism instead(PM2)
 const gracefulShutdown = (exitCode: number) => {
     logger.info('Graceful shutdown initiated');
     server.close(() => {
