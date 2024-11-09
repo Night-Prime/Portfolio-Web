@@ -6,8 +6,8 @@ const Footer: React.FC = () => {
   const childReveal = useScrollAnimation(animations.revealChildren);
   return (
     <motion.div className="h-auto md:h-screen w-full flex items-end justify-center font-Flux overflow-y-hidden">
-      <motion.div className="flex flex-col w-full h-full md:h-[90%]">
-        <motion.div className="w-full h-full bg-black text-white">
+      <motion.div className="flex flex-col bg-black w-full h-full md:h-[80%]">
+        <motion.div className="w-full h-full text-white">
           <motion.div className="flex flex-col md:flex-row w-full h-full my-10 md:my-0 gap-10 md:gap-0">
             {/* Left Section */}
             <motion.div className="flex-1 my-auto mx-6">
@@ -80,6 +80,14 @@ const Footer: React.FC = () => {
               </motion.div>
             </motion.div>
           </motion.div>
+        </motion.div>
+        <motion.div className="w-full">
+          <motion.h1
+            {...childReveal}
+            className="mx-auto text-white text-6xl font-semibold text-center"
+          >
+            Dhaniel. 2024.
+          </motion.h1>
         </motion.div>
       </motion.div>
     </motion.div>

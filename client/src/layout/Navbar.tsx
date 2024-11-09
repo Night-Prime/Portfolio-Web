@@ -7,6 +7,13 @@ import useSize from "../hooks/useSize";
 import CameraIcon from "@mui/icons-material/Camera";
 import { Cancel } from "@mui/icons-material";
 
+const navLinks = [
+  { name: "Me", path: "/" },
+  { name: "Blog", path: "/blog" },
+  { name: "Projects", path: "/projects" },
+  { name: "Products", path: "/products" },
+];
+
 const Navbar: React.FC = () => {
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
@@ -58,14 +65,14 @@ const Navbar: React.FC = () => {
           className="hidden lg:flex space-x-6"
           style={{ color: "white" }}
         >
-          {["Me", "Projects", "Products", "Blog"].map((item) => (
+          {navLinks.map(({ name, path }) => (
             <motion.li
-              key={item}
+              key={name}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               variants={childVariants}
             >
-              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+              <Link to={path}>{name}</Link>
             </motion.li>
           ))}
         </motion.ul>
@@ -79,14 +86,14 @@ const Navbar: React.FC = () => {
               variants={containerVariants}
               className="text-white space-y-4"
             >
-              {["Me", "Projects", "Products", "Blog"].map((item) => (
+              {navLinks.map(({ name, path }) => (
                 <motion.li
                   variants={childVariants}
-                  key={item}
+                  key={name}
                   onClick={toggleMenu}
                 >
-                  <Link to={`/${item.toLowerCase()}`} className="text-2xl">
-                    {item}
+                  <Link to={`/${path}`} className="text-2xl">
+                    {name}
                   </Link>
                 </motion.li>
               ))}

@@ -10,7 +10,7 @@ export const animations = {
         },
         exit: {
             opacity: 0,
-            x: "100%", // Slide back to the right
+            x: "100%",
             transition: { type: "spring", stiffness: 50, damping: 12 },
         },
     },
@@ -34,14 +34,17 @@ export const animations = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { duration: .5 },
+            transition: {
+                duration: .5,
+                staggerChildren: 0.5,
+            },
         },
     },
     revealChildren: {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { duration: 2, staggerChildren: 1 },
+            transition: { duration: 2 },
         },
     },
     scaleReveal: {
@@ -49,7 +52,8 @@ export const animations = {
         visible: {
             opacity: 1,
             scale: 1,
-            transition: { duration: 0.5 },
+            transition: { duration: 1, delayChildren: 0.5, staggerChildren: 0.5 },
+
         },
     },
     scaleRevealChildren: {
@@ -58,7 +62,7 @@ export const animations = {
             opacity: 1,
             y: 0,
             scale: 1,
-            transition: { duration: 1, delayChildren: 0.5, staggerChildren: 0.5 },
+            transition: { duration: 0.5 },
         },
     },
 } as const;
