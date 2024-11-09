@@ -17,6 +17,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const response_1 = require("../utils/response");
 const logger_1 = __importDefault(require("../utils/logger"));
 const SECRET_KEY = process.env.COOKIE_SECRET;
+/**
+ * Handles the Authentication of all incoming requests
+ */
 const authenticate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const authHeader = req.header('Authorization');
     if (!authHeader || !authHeader.startsWith('Bearer ')) {

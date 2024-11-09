@@ -5,6 +5,10 @@ import logger from "../utils/logger";
 
 const SECRET_KEY = process.env.COOKIE_SECRET!;
 
+/**
+ * Handles the Authentication of all incoming requests
+ */
+
 export const authenticate = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     const authHeader = req.header('Authorization');
 

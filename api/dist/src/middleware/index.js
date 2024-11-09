@@ -15,6 +15,9 @@ const passport_1 = __importDefault(require("passport"));
 const index_1 = require("../config/index");
 const routes_1 = __importDefault(require("../routes"));
 const errorHandler_1 = require("./errorHandler");
+/**
+ * This takes all the middleware and set to one interface
+ */
 const setupMiddleware = (app) => {
     app.use((0, cors_1.default)(index_1.corsOptions));
     app.use((0, express_session_1.default)(index_1.sessionOptions));

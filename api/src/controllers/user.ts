@@ -53,7 +53,7 @@ export const userLogin = async (req: Request, res: Response) => {
             logger.error("User not Found")
             return errorResponse(res, {
                 statusCode: 404,
-                message: "User not Found"
+                message: "Wrong login details"
             })
         }
 

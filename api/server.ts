@@ -7,6 +7,10 @@ import { initializeModels } from './src/models';
 const app = createApp();
 const server = http.createServer(app);
 
+/**
+ * Connecting the Express App to the Server
+ */
+
 const startServer = async (): Promise<void> => {
     try {
         await initializeModels();
@@ -18,6 +22,9 @@ const startServer = async (): Promise<void> => {
         process.exit(1);
     }
 };
+
+
+// Handling uncaught exceptions & rejections
 
 process.on('unhandledRejection', (reason: Error) => {
     logger.error('Unhandled Rejection:', reason);

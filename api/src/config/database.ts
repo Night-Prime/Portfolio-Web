@@ -38,7 +38,7 @@ const createPoolConfig = (env: DbEnv): PoolConfig => ({
     host: env.DB_HOST,
     database: env.DB_NAME,
     password: env.DB_PASS,
-    port: parseInt(env.DB_PORT, 4000),
+    port: parseInt(env.DB_PORT, 10),
 });
 
 // Function to create Sequelize configuration
@@ -52,7 +52,6 @@ const createSequelizeConfig = (env: DbEnv): SequelizeOptions => ({
 export const initializeDatabase = async (): Promise<Sequelize> => {
     try {
         const env = validateEnv();
-        logger.info("Wanna see? : ", env);
 
         const sequelizeConfig = createSequelizeConfig(env);
 

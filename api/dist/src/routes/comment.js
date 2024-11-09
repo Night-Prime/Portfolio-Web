@@ -13,19 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const user_1 = __importDefault(require("./user"));
-const post_1 = __importDefault(require("./post"));
-const comment_1 = __importDefault(require("./comment"));
-const auth_1 = require("../middleware/auth");
+const validation_1 = require("../middleware/validation");
+const comment_1 = require("../controllers/comment");
 const router = express_1.default.Router();
-router.use("/user", user_1.default);
-// router.use("/tag", TagRoutes);
-router.use("/post", auth_1.authenticate, post_1.default);
-router.use("/comment", auth_1.authenticate, comment_1.default);
-router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send({
-        status: 200,
-        message: 'Welcome to Dhaniel Service',
-    });
+router.post("/create", (0, validation_1.createCommentValidation)(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, comment_1.createComment)(req, res, next);
+}));
+router.delete("/:commentId", (0, validation_1.getCommentByIdValidation)(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, comment_1.deleteComment)(req, res, next);
 }));
 exports.default = router;

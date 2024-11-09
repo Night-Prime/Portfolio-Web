@@ -63,7 +63,7 @@ const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             logger_1.default.error("User not Found");
             return (0, response_1.errorResponse)(res, {
                 statusCode: 404,
-                message: "User not Found"
+                message: "Wrong login details"
             });
         }
         const passwordMatch = yield bcrypt_1.default.compare(password, (yield user).password);

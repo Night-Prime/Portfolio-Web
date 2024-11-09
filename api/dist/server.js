@@ -19,6 +19,9 @@ const logger_1 = __importDefault(require("./src/utils/logger"));
 const models_1 = require("./src/models");
 const app = (0, app_1.default)();
 const server = http_1.default.createServer(app);
+/**
+ * Connecting the Express App to the Server
+ */
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, models_1.initializeModels)();
@@ -31,6 +34,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
         process.exit(1);
     }
 });
+// Handling uncaught exceptions & rejections
 process.on('unhandledRejection', (reason) => {
     logger_1.default.error('Unhandled Rejection:', reason);
     throw reason;

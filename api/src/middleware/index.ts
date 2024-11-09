@@ -9,7 +9,10 @@ import passport from 'passport';
 import { corsOptions, sessionOptions } from '../config/index'
 import router from '../routes';
 import { errorHandler } from './errorHandler';
-import { authenticate } from './auth';
+
+/**
+ * This takes all the middleware and set to one interface
+ */
 
 export const setupMiddleware = (app: express.Application): void => {
     app.use(cors(corsOptions));

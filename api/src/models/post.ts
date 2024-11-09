@@ -7,6 +7,8 @@ class Post extends Model {
     public published!: boolean;
     public publishedAt!: Date;
     public userId!: number;
+    public media!: string;
+    // public tagId!: number;
 }
 
 export default Post;
