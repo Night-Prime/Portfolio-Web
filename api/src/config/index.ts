@@ -8,7 +8,7 @@ export const PORT = process.env.PORT || 4200;
 export const NODE_ENV = process.env.NODE_ENV || 'development';
 
 export const corsOptions: CorsOptions = {
-    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : 'http://localhost:3000/',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
 }

@@ -25,10 +25,7 @@ const Footer: React.FC = () => {
             <motion.div className="flex-1 my-auto mx-8">
               <motion.div className="flex flex-col gap-4 justify-center md:justify-end items-center md:items-end">
                 <motion.div>
-                  <motion.h1
-                    {...childReveal}
-                    className="text-lg md:text-2xl text-center md:text-right"
-                  >
+                  <motion.h1 className="text-lg md:text-2xl text-center md:text-right">
                     Email
                   </motion.h1>
                   <motion.h1
@@ -39,10 +36,7 @@ const Footer: React.FC = () => {
                   </motion.h1>
                 </motion.div>
                 <motion.div>
-                  <motion.h1
-                    {...childReveal}
-                    className="text-lg md:text-2xl text-center md:text-right"
-                  >
+                  <motion.h1 className="text-lg md:text-2xl text-center md:text-right">
                     Twitter
                   </motion.h1>
                   <motion.h1
@@ -53,10 +47,7 @@ const Footer: React.FC = () => {
                   </motion.h1>
                 </motion.div>
                 <motion.div>
-                  <motion.h1
-                    {...childReveal}
-                    className="text-lg md:text-2xl text-center md:text-right"
-                  >
+                  <motion.h1 className="text-lg md:text-2xl text-center md:text-right">
                     Instagram
                   </motion.h1>
                   <motion.h1
@@ -67,13 +58,13 @@ const Footer: React.FC = () => {
                   </motion.h1>
                 </motion.div>
                 <motion.div>
-                  <motion.h1
-                    {...childReveal}
-                    className="text-lg md:text-2xl text-center md:text-right"
-                  >
+                  <motion.h1 className="text-lg md:text-2xl text-center md:text-right">
                     Phone (WhatsApp)
                   </motion.h1>
-                  <motion.h1 className="text-center md:text-right">
+                  <motion.h1
+                    {...childReveal}
+                    className="text-center md:text-right"
+                  >
                     +2348116256294
                   </motion.h1>
                 </motion.div>
@@ -84,7 +75,7 @@ const Footer: React.FC = () => {
         <motion.div className="w-full">
           <motion.h1
             {...childReveal}
-            className="mx-auto text-white text-6xl font-semibold text-center"
+            className="mx-auto text-white text-4xl font-semibold text-center"
           >
             Dhaniel. 2024.
           </motion.h1>

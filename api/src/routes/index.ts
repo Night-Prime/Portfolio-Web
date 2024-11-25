@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use("/user", UserRoutes);
 // router.use("/tag", TagRoutes);
-router.use("/post", authenticate, PostRoutes);
+router.use("/post", PostRoutes);
 router.use("/comment", authenticate, CommentRoutes);
 
 router.get('/', async (req, res) => {

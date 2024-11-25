@@ -2,6 +2,7 @@ import { Suspense, lazy, useState } from "react";
 import type { RouteObject } from "react-router";
 import LoadingScreen from "./components/LoadingScreen";
 import BlogPage from "./page/BlogPage";
+import Article from "./components/Article";
 
 const Loadable = (Component: any) => (props: any) =>
   (
@@ -36,6 +37,10 @@ const routes: RouteObject[] = [
   {
     path: "/blog",
     element: <BlogPage />,
+  },
+  {
+    path: "/blog/:id",
+    element: <Article />,
   },
 ];
 

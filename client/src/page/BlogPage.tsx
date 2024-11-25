@@ -1,7 +1,10 @@
 import React, { FC, useRef } from "react";
+import useFetch from "../hooks/useFetch";
 import { Instagram, Twitter, LinkedIn } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { animations } from "../shared/animation";
+import BlogTile from "../components/BlogTile";
+import { Blog } from "../shared/interface";
 
 const Navbar = () => {
   const ref = useRef(null);
@@ -59,7 +62,7 @@ const Hero = () => {
       animate="visible"
       className="h-1/3 w-full flex justify-center items-center font-SF py-6"
     >
-      <motion.h1 variants={scaleChild} className="text-[16rem] font-bold">
+      <motion.h1 variants={scaleChild} className="text-[15rem] font-bold">
         ARTICLES.
       </motion.h1>
     </motion.div>
@@ -69,6 +72,14 @@ const Hero = () => {
 const Grid = () => {
   const reveal = animations.scaleReveal;
   const revealChild = animations.childVariants;
+
+  const {
+    loading,
+    data: blogs,
+    error,
+    refetch,
+  } = useFetch<Blog[]>("/post/all");
+
   return (
     <motion.div className="h-full my-10 w-full flex flex-col font-SF items-center gap-6">
       <motion.div
@@ -105,44 +116,21 @@ const Grid = () => {
         variants={reveal}
         initial="hidden"
         animate="visible"
-        className="w-[95%] h-[140vh] grid grid-cols-3 gap-4"
+        className="w-[95%] h-[110vh] grid grid-cols-3 gap-4"
       >
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
-        <motion.div
-          variants={revealChild}
-          className="bg-gray-200 rounded-md"
-        ></motion.div>
+        {blogs && blogs.length > 0 ? (
+          blogs.map((blog) => (
+            <motion.div
+              key={blog.id}
+              variants={revealChild}
+              className="bg-gray-200 rounded-md"
+            >
+              <BlogTile article={blog} />
+            </motion.div>
+          ))
+        ) : (
+          <div>No Blogs Available</div>
+        )}
       </motion.div>
     </motion.div>
   );

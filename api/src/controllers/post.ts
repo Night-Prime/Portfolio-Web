@@ -12,17 +12,8 @@ export const createPost = async (req: Request, res: Response, next: NextFunction
     const { title, content, published, userId, tags, } = req.body;
 
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            logger.info(`Validation Error: ${JSON.stringify(errors.array())}`);
-            return errorResponse(res, {
-                statusCode: 400,
-                message: "Validation error",
-                errors: JSON.stringify(errors.array())
-            });
-        }
-
         const mediaLink = req.file ? req.file.path : null;
+        console.log("Issue: ", mediaLink);
 
         // Find the user
         const existingUser = await User.findByPk(userId);
@@ -59,7 +50,9 @@ export const createPost = async (req: Request, res: Response, next: NextFunction
     }
 };
 
-export const getPosts = async (req: any, res: Response, next: NextFunction) => {
+// This gets all the post by a particular author
+
+export const getPostsByAuthor = async (req: any, res: Response, next: NextFunction) => {
     const { limit, offset } = req.query;
     const authorId = req.user?.id;
 
@@ -87,9 +80,11 @@ export const getPosts = async (req: any, res: Response, next: NextFunction) => {
     }
 };
 
+// This gets a post by a particular author
+
 export const getPostById = async (req: any, res: Response, next: NextFunction) => {
     const { postId } = req.params;
-    const authorId = req.user?.id;
+
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -102,7 +97,7 @@ export const getPostById = async (req: any, res: Response, next: NextFunction) =
         }
 
         const post = await Post.findOne({
-            where: { id: postId, userId: authorId },
+            where: { id: postId },
             include: [{ model: User, attributes: ['name', 'email'], as: 'author' }]
         });
 
@@ -171,3 +166,31 @@ export const deletePost = async (req: any, res: Response, next: NextFunction) =>
         });
     }
 };
+
+// This simply gets all Posts on the platform (for client)
+export const getPosts = async (req: any, res: Response, next: NextFunction) => {
+    const { limit, offset } = req.query;
+
+    try {
+        const posts = await Post.findAll({
+            limit: limit ? parseInt(limit as string) : undefined,
+            offset: offset ? parseInt(offset as string) : undefined,
+            include: [{ model: User, attributes: ['name', 'email'], as: 'author' }, { model: Comment, attributes: ['content'], as: 'comments' }]
+        });
+
+        logger.info(`Retrieved ${posts.length} posts`);
+
+        return successResponse(res, {
+            statusCode: 200,
+            message: 'Posts retrieved successfully',
+            data: posts,
+        });
+    } catch (error) {
+        logger.error(`Error trying to retrieve posts: ${error}`);
+        return errorResponse(res, {
+            statusCode: 500,
+            message: 'Error trying to retrieve posts',
+        });
+    }
+};
+
