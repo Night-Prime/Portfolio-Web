@@ -39,7 +39,7 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onLoadComplete }) => {
       },
     });
     return () => animation.stop();
-  });
+  }, []);
 
   return (
     <motion.div id="preloader" className="loader w-screen h-screen">
