@@ -8,6 +8,7 @@ class Post extends Model {
     public publishedAt!: Date;
     public userId!: number;
     public media!: string;
+    public view!: string;
     // public tagId!: number;
 }
 

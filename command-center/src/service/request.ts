@@ -1,6 +1,9 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ResponseData<T = any> {
+    status: string;
     data: T;
     message?: string;
 }
@@ -31,6 +34,7 @@ class ApiClient {
                 return config;
             },
             (error) => {
+                toast.error("Request error: Couldn't initiate request.");
                 return Promise.reject(error);
             }
         );
@@ -45,6 +49,7 @@ class ApiClient {
                     this.handleNetworkError(error);
                 } else {
                     console.error('Error', error.message);
+                    toast.error("An unexpected error occurred.");
                 }
                 return Promise.reject(error);
             }
@@ -52,34 +57,44 @@ class ApiClient {
     }
 
     private handleHttpError(response: AxiosResponse) {
-        switch (response.status) {
+        const { status, data } = response;
+
+        switch (status) {
             case 400:
-                console.error('Bad Request:', response.data);
+                toast.error(data.message || 'Bad Request: Invalid input.');
+                console.error('Bad Request:', data);
                 break;
             case 401:
                 this.handleUnauthorized();
                 break;
             case 403:
-                console.error('Forbidden:', response.data);
+                toast.error(data.message || 'Forbidden: Access denied.');
+                console.error('Forbidden:', data);
                 break;
             case 404:
-                console.error('Not Found:', response.data);
+                toast.error(data.message || 'Resource not found.');
+                console.error('Not Found:', data);
                 break;
             case 500:
-                console.error('Server Error:', response.data);
+                toast.error(data.message || 'Server Error: Please try again later.');
+                console.error('Server Error:', data);
                 break;
             default:
-                console.error('Unexpected Error:', response.data);
+                toast.error(data.message || 'Unexpected Error occurred.');
+                console.error('Unexpected Error:', data);
         }
     }
 
     private handleNetworkError(error: any) {
+        toast.error('Network Error: Please check your connection.');
         console.error('Network Error:', error.message);
     }
 
     private handleUnauthorized() {
+        toast.warn('Unauthorized: Please log in again.');
+        alert("Unauthorized: Please log in again.")
         localStorage.removeItem('authToken');
-        window.location.href = '/login';
+        window.location.href = '/';
     }
 
     async get<T>(url: string, config?: AxiosRequestConfig): Promise<ResponseData<T>> {

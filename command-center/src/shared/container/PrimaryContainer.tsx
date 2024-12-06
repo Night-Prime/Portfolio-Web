@@ -5,7 +5,11 @@ import React from "react";
 const PrimaryContainer: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  return <div className="min-h-auto min-w-screen">{children}</div>;
+  return (
+    <div className="min-h-auto min-w-screen">
+      <div className="h-full w-[90%] mx-auto">{children}</div>
+    </div>
+  );
 };
 
 export default PrimaryContainer;
