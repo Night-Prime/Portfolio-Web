@@ -93,7 +93,7 @@ const Login: React.FC = () => {
 
   return (
     <PrimaryContainer>
-      <div className="px-6 py-8 w-screen h-screen flex flex-row gap-8 text-white">
+      <div className="px-6 py-8 w-screen h-screen flex flex-row gap-8 text-black">
         <div className="h-full w-full bg-gray-700 rounded-xl"></div>
         <div className="h-full w-full">
           <Formik
@@ -118,7 +118,7 @@ const Login: React.FC = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-16 px-4 border-2 ${
                       errors.email && touched.email
                         ? "border-red-500"
                         : "border-white"
@@ -136,7 +136,7 @@ const Login: React.FC = () => {
                     name="password"
                     type="password"
                     placeholder="*******"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-16 px-4 border-2 ${
                       errors.password && touched.password
                         ? "border-red-500"
                         : "border-white"
@@ -152,7 +152,7 @@ const Login: React.FC = () => {
                 <div className="self-start mx-[13%]">
                   <button
                     type="submit"
-                    className={`rounded-full hover:bg-red-800 cursor-pointer px-12 py-2 font-bold bg-red-500`}
+                    className={`rounded-3xl text-white hover:bg-red-800 cursor-pointer px-12 py-2 font-bold bg-red-500`}
                   >
                     Login
                   </button>

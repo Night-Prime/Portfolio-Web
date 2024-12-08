@@ -39,6 +39,10 @@ export const initializeModels = async () => {
                 type: DataTypes.TEXT,
                 allowNull: true,
             },
+            view: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
         },
         {
             sequelize,
@@ -62,7 +66,7 @@ export const initializeModels = async () => {
                 allowNull: false,
             },
             content: {
-                type: DataTypes.TEXT,
+                type: DataTypes.JSON,
                 allowNull: false,
             },
             media: {
@@ -81,6 +85,10 @@ export const initializeModels = async () => {
                     key: 'id'
                 }
             },
+            view: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            }
         },
         {
             sequelize,

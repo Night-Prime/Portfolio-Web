@@ -54,10 +54,10 @@ export const createPostValidation = () => {
             .withMessage("Title is required."),
 
         body("content")
+            .isObject()
             .notEmpty()
             .withMessage("Fill in content")
-            .isLength({ min: 2 })
-            .withMessage("Name must be at least 2 characters long."),
+            .withMessage("Article incomplete without an article"),
 
         body("published")
             .notEmpty()
