@@ -5,8 +5,7 @@ import { makeRequest } from "../service/request";
 import PrimaryContainer from "../shared/container/PrimaryContainer";
 import { useNavigate } from "react-router-dom";
 import Loader from "../shared/components/Loader";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { NotificationType, showNotification } from "../service/notification";
 
 // Define the validation schema using Yup
 const LoginSchema = Yup.object().shape({
@@ -56,34 +55,19 @@ const Login: React.FC = () => {
   ) => {
     setIsLoading(true);
     setSubmitting(true);
+    const response = await makeRequest.post<LoginResponse>(
+      "user/login",
+      values
+    );
 
-    try {
-      const response = await makeRequest.post<LoginResponse>(
-        "user/login",
-        values
-      );
-
-      if (response && response.status === "success") {
-        const { data } = response;
-
-        localStorage.setItem("authToken", data?.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-
-        toast.success("Login successful!", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-        navigate("/dashboard");
-      }
-    } catch (error: Error | any) {
-      toast.error(error, {
-        position: "top-right",
-        autoClose: 5000,
-      });
-      console.error("Login Error:", error);
-    } finally {
+    if (response && response.status === "success") {
+      showNotification("Login Sucessfull", NotificationType.SUCCESS);
       setIsLoading(false);
       setSubmitting(false);
+      const { data } = response;
+      localStorage.setItem("authToken", data?.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/dashboard");
     }
   };
 
@@ -162,17 +146,6 @@ const Login: React.FC = () => {
           </Formik>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </PrimaryContainer>
   );
 };

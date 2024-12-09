@@ -3,20 +3,20 @@ import type { RouteObject } from "react-router";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { Navigate, Outlet } from "react-router-dom";
-import { toast } from "react-toastify";
 import Register from "./pages/Register";
 import Home from "./components/Home";
 import Articles from "./pages/Articles";
 import CreateArticle from "./pages/CreateArticle";
+import { NotificationType, showNotification } from "./service/notification";
 
 const ProtectedRoute: React.FC = () => {
   const authToken = localStorage.getItem("authToken");
 
   if (!authToken) {
-    toast.error("Please log in to access the dashboard", {
-      position: "top-right",
-      autoClose: 3000,
-    });
+    showNotification(
+      "Unauthorized, Please log in again!",
+      NotificationType.ERROR
+    );
     return <Navigate to="/" replace />;
   }
 

@@ -5,8 +5,7 @@ import { makeRequest } from "../service/request";
 import PrimaryContainer from "../shared/container/PrimaryContainer";
 import { useNavigate } from "react-router-dom";
 import Loader from "../shared/components/Loader";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { NotificationType, showNotification } from "../service/notification";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Full Name is required"),
@@ -59,36 +58,22 @@ const Register: React.FC = () => {
   ) => {
     setIsLoading(true);
     setSubmitting(true);
+    const response = await makeRequest.post<RegisterResponse>(
+      "user/register",
+      values
+    );
 
-    try {
-      setIsLoading(true);
-      const response = await makeRequest.post<RegisterResponse>(
-        "user/register",
-        values
+    if (response && response.status === "success") {
+      showNotification(
+        "Successful Registration: Now Login!",
+        NotificationType.SUCCESS
       );
-
-      if (response && response.status === "success") {
-        setIsLoading(false);
-        const { data } = response;
-        toast.success("Register successful!", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-
-        // Navigate after a short delay to show notification
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      }
-    } catch (error: Error | any) {
-      toast.error(error, {
-        position: "top-right",
-        autoClose: 5000,
-      });
-      console.error("Register Error:", error);
-    } finally {
+      setIsLoading(false);
+      const { data } = response;
+      // implement navigation straight to the dashboard soon.
       setIsLoading(false);
       setSubmitting(false);
+      navigate("/");
     }
   };
 

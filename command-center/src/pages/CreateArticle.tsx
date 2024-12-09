@@ -6,6 +6,7 @@ import { makeRequest } from "../service/request";
 import Preview from "../components/Preview";
 import { Article } from "../shared/interface";
 import { useNavigate } from "react-router";
+import { NotificationType, showNotification } from "../service/notification";
 
 let user: any = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user")!)
@@ -50,6 +51,10 @@ const CreateArticle: React.FC = () => {
       console.log("Saved: ", articleContent);
       const response = await makeRequest.post("post/create", articleContent);
       if (response && response.status === "success") {
+        showNotification(
+          "Article created successfully",
+          NotificationType.SUCCESS
+        );
         console.log("Response: ", response);
         navigate("/dashboard");
       }
