@@ -12,6 +12,12 @@ interface NotificationOptions {
     timer?: number;
 }
 
+/**
+ * @description - handles the notification pop-up throughout the entire project
+ * @param message - handles the custom message 
+ * @param type - dictates what type of notification it is
+ * @param options - extra info to style the notification.
+ */
 export const showNotification = (
     message: string,
     type: NotificationType = NotificationType.INFO,
