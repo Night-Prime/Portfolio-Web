@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
           <div className="mx-auto w-[80%] h-1 my-6"></div>
         </div>
       </div>
-      <div className="w-[90%] h-auto mx-auto overflow-y-scroll">
+      <div className="w-[99%] h-auto mx-auto overflow-y-scroll">
         <Outlet />
       </div>
     </PrimaryContainer>

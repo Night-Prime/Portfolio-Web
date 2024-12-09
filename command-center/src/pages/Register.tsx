@@ -98,9 +98,9 @@ const Register: React.FC = () => {
 
   return (
     <PrimaryContainer>
-      <div className="px-6 py-8 w-screen h-screen flex flex-row-reverse gap-8 text-black">
+      <div className="py-8 w-full h-screen flex flex-row-reverse overflow-hidden gap-8 text-black">
         <div className="h-full w-full bg-gray-700 rounded-xl"></div>
-        <div className="h-full w-full">
+        <div className="h-full w-full overflow-y-scroll">
           <Formik
             initialValues={initialValues}
             validationSchema={RegisterSchema}

@@ -6,7 +6,7 @@ class User extends Model {
     public email!: string;
     public password!: string;
     public bio!: string;
-
+    public view!: number;
     declare author?: string;
 }
 
