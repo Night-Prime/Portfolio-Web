@@ -26,16 +26,18 @@ const Home: React.FC = () => {
               articles.map((blog) => (
                 <div
                   key={blog.id}
-                  className="bg-primary rounded-md inline-block m-2 p-4"
+                  className="bg-primary rounded-md inline-block m-2 p-4 cursor-pointer"
                 >
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="Placeholder"
-                    className="w-full h-auto rounded-md mb-2"
-                  />
-                  <div className="text-highlight font-bold text-center">
-                    {blog.title}
-                  </div>
+                  <RouterLink to={``}>
+                    <img
+                      src="https://via.placeholder.com/150"
+                      alt="Placeholder"
+                      className="w-full h-auto rounded-md mb-2"
+                    />
+                    <div className="text-highlight font-bold text-center">
+                      {blog.title}
+                    </div>
+                  </RouterLink>
                 </div>
               ))
             ) : (
