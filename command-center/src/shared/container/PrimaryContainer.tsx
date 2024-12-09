@@ -7,7 +7,7 @@ const PrimaryContainer: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <div className="min-h-auto min-w-screen">
-      <div className="h-full w-[90%] mx-auto">{children}</div>
+      <div className="h-full w-[90%] mx-auto overflow-x-hidden">{children}</div>
     </div>
   );
 };

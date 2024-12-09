@@ -11,14 +11,14 @@ let navDetails: { title: string; link: string } = {
 const Dashboard: React.FC = () => {
   return (
     <PrimaryContainer>
-      <div className="h-auto w-screen flex flex-col">
+      <div className="h-auto w-full flex flex-col">
         <Navbar buttonDetails={navDetails} />
         <div className="h-full w-full my-10">
           <h1 className="text-9xl text-center">DASHBOARD.</h1>
-          <div className="mx-auto w-[80%] h-1 my-6 bg-white"></div>
+          <div className="mx-auto w-[80%] h-1 my-6"></div>
         </div>
       </div>
-      <div className="w-[90%] h-auto mx-auto overflow-y-scroll">
+      <div className="w-[99%] h-auto mx-auto overflow-y-scroll">
         <Outlet />
       </div>
     </PrimaryContainer>

@@ -28,7 +28,7 @@ module.exports = {
         allowNull: true,
       },
       view: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       createdAt: {

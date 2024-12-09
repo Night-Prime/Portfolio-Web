@@ -61,14 +61,15 @@ const Register: React.FC = () => {
     setSubmitting(true);
 
     try {
+      setIsLoading(true);
       const response = await makeRequest.post<RegisterResponse>(
         "user/register",
         values
       );
 
       if (response && response.status === "success") {
+        setIsLoading(false);
         const { data } = response;
-        console.log("Data: ", data);
         toast.success("Register successful!", {
           position: "top-right",
           autoClose: 3000,
@@ -97,9 +98,9 @@ const Register: React.FC = () => {
 
   return (
     <PrimaryContainer>
-      <div className="px-6 py-8 w-screen h-screen flex flex-row-reverse gap-8 text-white">
+      <div className="py-8 w-full h-screen flex flex-row-reverse overflow-hidden gap-8 text-black">
         <div className="h-full w-full bg-gray-700 rounded-xl"></div>
-        <div className="h-full w-full">
+        <div className="h-full w-full overflow-y-scroll">
           <Formik
             initialValues={initialValues}
             validationSchema={RegisterSchema}
@@ -124,7 +125,7 @@ const Register: React.FC = () => {
                     name="name"
                     type="text"
                     placeholder="Full Name"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-16 px-4  border-2 ${
                       errors.name && touched.name
                         ? "border-red-500"
                         : "border-white"
@@ -142,7 +143,7 @@ const Register: React.FC = () => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-16 px-4 border-2 ${
                       errors.email && touched.email
                         ? "border-red-500"
                         : "border-white"
@@ -160,7 +161,7 @@ const Register: React.FC = () => {
                     name="password"
                     type="password"
                     placeholder="*******"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-16 px-4  border-2 ${
                       errors.password && touched.password
                         ? "border-red-500"
                         : "border-white"
@@ -176,9 +177,9 @@ const Register: React.FC = () => {
                 <div className="w-full flex flex-col items-center">
                   <Field
                     name="bio"
-                    type="textbox"
+                    as="textarea"
                     placeholder="Fill in your Bio"
-                    className={`rounded-full w-3/4 h-12 px-4 bg-gray-600 border-2 ${
+                    className={`rounded-3xl w-3/4 h-36 p-4  border-2 ${
                       errors.bio && touched.bio
                         ? "border-red-500"
                         : "border-white"
@@ -194,7 +195,7 @@ const Register: React.FC = () => {
                 <div className="self-start mx-[13%]">
                   <button
                     type="submit"
-                    className={`rounded-full hover:bg-red-800 cursor-pointer px-12 py-2 font-bold bg-red-500`}
+                    className={`rounded-3xl hover:text-red-800 hover:bg-white cursor-pointer px-12 py-2 font-bold bg-red-500 text-white`}
                   >
                     Register
                   </button>

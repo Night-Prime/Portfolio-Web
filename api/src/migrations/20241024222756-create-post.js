@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
       },
       content: {
-        type: Sequelize.TEXT,
+        type: Sequelize.JSON,
         allowNull: false,
       },
       published: {
@@ -33,6 +33,10 @@ module.exports = {
       },
       media: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      view: {
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       // tagId: {
