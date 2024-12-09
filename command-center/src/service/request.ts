@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
+import { NotificationType, showNotification } from './notification';
 
 interface ResponseData<T = any> {
     status: string;
@@ -34,7 +34,7 @@ class ApiClient {
                 return config;
             },
             (error) => {
-                toast.error("Request error: Couldn't initiate request.");
+                showNotification('Request Error: Couldn\'t initate request', NotificationType.ERROR)
                 return Promise.reject(error);
             }
         );
@@ -48,8 +48,8 @@ class ApiClient {
                 } else if (error.request) {
                     this.handleNetworkError(error);
                 } else {
+                    showNotification('Unexpected Error, Try Again!', NotificationType.ERROR)
                     console.error('Error', error.message);
-                    toast.error("An unexpected error occurred.");
                 }
                 return Promise.reject(error);
             }
@@ -61,38 +61,37 @@ class ApiClient {
 
         switch (status) {
             case 400:
-                toast.error(data.message || 'Bad Request: Invalid input.');
+                showNotification('Bad Request, Try Again!', NotificationType.ERROR)
                 console.error('Bad Request:', data);
                 break;
             case 401:
                 this.handleUnauthorized();
                 break;
             case 403:
-                toast.error(data.message || 'Forbidden: Access denied.');
+                showNotification('Forbidden: Access Denied', NotificationType.ERROR)
                 console.error('Forbidden:', data);
                 break;
             case 404:
-                toast.error(data.message || 'Resource not found.');
+                showNotification('Resource Not Found', NotificationType.INFO)
                 console.error('Not Found:', data);
                 break;
             case 500:
-                toast.error(data.message || 'Server Error: Please try again later.');
+                showNotification('Server Error', NotificationType.ERROR)
                 console.error('Server Error:', data);
                 break;
             default:
-                toast.error(data.message || 'Unexpected Error occurred.');
+                showNotification('Unexpected Error, Try Again!', NotificationType.ERROR)
                 console.error('Unexpected Error:', data);
         }
     }
 
     private handleNetworkError(error: any) {
-        toast.error('Network Error: Please check your connection.');
+        showNotification('Network Error, Please check your connection!', NotificationType.ERROR)
         console.error('Network Error:', error.message);
     }
 
     private handleUnauthorized() {
-        toast.warn('Unauthorized: Please log in again.');
-        alert("Unauthorized: Please log in again.")
+        showNotification('Unauthorized, Please log in again!', NotificationType.ERROR)
         localStorage.removeItem('authToken');
         window.location.href = '/';
     }
