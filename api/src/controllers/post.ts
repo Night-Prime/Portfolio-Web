@@ -9,11 +9,10 @@ import { validationResult } from "express-validator";
  */
 
 export const createPost = async (req: Request, res: Response, next: NextFunction) => {
-    const { title, content, published, userId, tags, } = req.body;
+    const { title, content, published, userId, tags, media } = req.body;
 
     try {
-        const mediaLink = req.file ? req.file.path : null;
-        console.log("Issue: ", mediaLink);
+        const mediaLink = req.file ? req.file.path : media;
 
         // Find the user
         const existingUser = await User.findByPk(userId);

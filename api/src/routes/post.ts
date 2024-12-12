@@ -10,7 +10,7 @@ const upload = multer({ storage });
 
 const router = express.Router();
 
-router.post("/create", upload.single('image'), authenticate, async (req: Request, res: Response, next: NextFunction) => {
+router.post("/create", upload.single('media'), authenticate, async (req: Request, res: Response, next: NextFunction) => {
     await createPost(req, res, next);
 })
 
