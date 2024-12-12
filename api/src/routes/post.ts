@@ -22,11 +22,11 @@ router.get("/byAuthor", authenticate, async (req: Request, res: Response, next: 
     await getPostsByAuthor(req, res, next);
 });
 
-router.get("/:postId", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
     await getPostById(req, res, next);
 })
 
-router.delete("/:postId", grabPostByIdValidation(), authenticate, async (req: Request, res: Response, next: NextFunction) => {
+router.delete("/:id", grabPostByIdValidation(), authenticate, async (req: Request, res: Response, next: NextFunction) => {
     await deletePost(req, res, next);
 })
 

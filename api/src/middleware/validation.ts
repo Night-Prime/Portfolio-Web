@@ -73,7 +73,7 @@ export const createPostValidation = () => {
 
 export const grabPostByIdValidation = () => {
     return [
-        param("postId")
+        param("id")
             .isUUID()
             .notEmpty()
             .withMessage("Post ID is required!")

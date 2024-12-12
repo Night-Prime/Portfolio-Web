@@ -3,6 +3,7 @@ import PrimaryContainer from "../shared/container/PrimaryContainer";
 import { useFetch } from "../hooks/useFetch";
 import { Blog } from "../shared/interface";
 import { Link as RouterLink } from "react-router-dom";
+import Loader from "../shared/components/Loader";
 
 const Home: React.FC = () => {
   const {
@@ -16,6 +17,10 @@ const Home: React.FC = () => {
     refetch();
   }, [refetch]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <PrimaryContainer>
       <div className="w-full h-full flex flex-col">
@@ -28,7 +33,7 @@ const Home: React.FC = () => {
                   key={blog.id}
                   className="w-full h-full bg-primary rounded-md flex flex-col items-start justify-center m-2 p-4 cursor-pointer"
                 >
-                  <RouterLink to={``}>
+                  <RouterLink to={`/articles/${blog.id}`}>
                     <div className="flex flex-col items-center">
                       {blog.media ? (
                         <img

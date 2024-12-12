@@ -60,7 +60,7 @@ export const getPostsByAuthor = async (req: any, res: Response, next: NextFuncti
             where: { userId: authorId },
             limit: limit ? parseInt(limit as string) : undefined,
             offset: offset ? parseInt(offset as string) : undefined,
-            include: [{ model: User, attributes: ['name', 'email'], as: 'author' }, { model: Comment, attributes: ['content'], as: 'comments' }]
+            include: [{ model: User, attributes: ['name', 'email'], as: 'author' }]
         });
 
         logger.info(`Retrieved ${posts.length} posts`);
@@ -82,7 +82,7 @@ export const getPostsByAuthor = async (req: any, res: Response, next: NextFuncti
 // This gets a post by a particular author
 
 export const getPostById = async (req: any, res: Response, next: NextFunction) => {
-    const { postId } = req.params;
+    const { id } = req.params;
 
     try {
         const errors = validationResult(req);
@@ -96,8 +96,8 @@ export const getPostById = async (req: any, res: Response, next: NextFunction) =
         }
 
         const post = await Post.findOne({
-            where: { id: postId },
-            include: [{ model: User, attributes: ['name', 'email'], as: 'author' }]
+            where: { id: id },
+            include: [{ model: User, attributes: ['name', 'email'], as: 'author' }, { model: Comment, attributes: ['content'], as: 'comments' }]
         });
 
         if (!post) {
@@ -107,7 +107,7 @@ export const getPostById = async (req: any, res: Response, next: NextFunction) =
             });
         }
 
-        logger.info(`Retrieved post with ID: ${postId}`);
+        logger.info(`Retrieved post with ID: ${id}`);
 
         return successResponse(res, {
             statusCode: 200,
@@ -115,7 +115,7 @@ export const getPostById = async (req: any, res: Response, next: NextFunction) =
             data: post,
         });
     } catch (error) {
-        logger.error(`Error trying to retrieve post with ID: ${postId}: ${error}`);
+        logger.error(`Error trying to retrieve post with ID: ${id}: ${error}`);
         return errorResponse(res, {
             statusCode: 500,
             message: 'Error trying to retrieve post',
@@ -124,7 +124,7 @@ export const getPostById = async (req: any, res: Response, next: NextFunction) =
 };
 
 export const deletePost = async (req: any, res: Response, next: NextFunction) => {
-    const { postId } = req.params;
+    const { id } = req.params;
     const authorId = req.user?.id;
 
     try {
@@ -139,7 +139,7 @@ export const deletePost = async (req: any, res: Response, next: NextFunction) =>
         }
 
         const post = await Post.findOne({
-            where: { id: postId, userId: authorId },
+            where: { id: id, userId: authorId },
         });
 
         if (!post) {
@@ -149,7 +149,7 @@ export const deletePost = async (req: any, res: Response, next: NextFunction) =>
             });
         }
 
-        logger.info(`Deleted post with ID: ${postId}`);
+        logger.info(`Deleted post with ID: ${id}`);
         await post.destroy();
 
         return successResponse(res, {
@@ -158,7 +158,7 @@ export const deletePost = async (req: any, res: Response, next: NextFunction) =>
             data: []
         });
     } catch (error) {
-        logger.error(`Error trying to delete post with ID: ${postId}: ${error}`);
+        logger.error(`Error trying to delete post with ID: ${id}: ${error}`);
         return errorResponse(res, {
             statusCode: 500,
             message: 'Error trying to delete post',

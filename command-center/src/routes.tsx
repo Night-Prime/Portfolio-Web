@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Articles from "./pages/Articles";
 import CreateArticle from "./pages/CreateArticle";
 import { NotificationType, showNotification } from "./service/notification";
+import Article from "./pages/Article";
 
 const ProtectedRoute: React.FC = () => {
   const authToken = localStorage.getItem("authToken");
@@ -55,6 +56,10 @@ const routes: RouteObject[] = [
           {
             path: "create",
             element: <CreateArticle />,
+          },
+          {
+            path: ":id",
+            element: <Article />,
           },
         ],
       },
