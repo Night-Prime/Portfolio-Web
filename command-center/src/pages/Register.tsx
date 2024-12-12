@@ -75,6 +75,7 @@ const Register: React.FC = () => {
       setSubmitting(false);
       navigate("/");
     }
+    setIsLoading(false);
   };
 
   if (isLoading) {

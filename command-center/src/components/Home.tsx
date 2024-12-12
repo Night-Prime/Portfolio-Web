@@ -14,28 +14,39 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [refetch]);
 
   return (
     <PrimaryContainer>
       <div className="w-full h-full flex flex-col">
         <div className="w-full h-full">
           <h5 className="text-2xl underline my-4 font-bold">Recent Articles</h5>
-          <div className="overflow-x-auto whitespace-nowrap">
+          <div className="flex flex-row overflow-x-auto whitespace-nowrap">
             {articles && articles.length > 0 ? (
               articles.map((blog) => (
                 <div
                   key={blog.id}
-                  className="bg-primary rounded-md inline-block m-2 p-4 cursor-pointer"
+                  className="w-full h-full bg-primary rounded-md flex flex-col items-start justify-center m-2 p-4 cursor-pointer"
                 >
                   <RouterLink to={``}>
-                    <img
-                      src="https://via.placeholder.com/150"
-                      alt="Placeholder"
-                      className="w-full h-auto rounded-md mb-2"
-                    />
-                    <div className="text-highlight font-bold text-center">
-                      {blog.title}
+                    <div className="flex flex-col items-center">
+                      {blog.media ? (
+                        <img
+                          src={blog.media}
+                          alt={blog.title}
+                          className="w-[150px] h-[150px] rounded-md mb-2 object-cover"
+                        />
+                      ) : (
+                        <img
+                          src="https://via.placeholder.com/150"
+                          alt={blog.title}
+                          className="w-[150px] h-[150px] rounded-md mb-2 object-cover"
+                        />
+                      )}
+
+                      <div className="text-highlight font-bold text-center">
+                        {blog.title}
+                      </div>
                     </div>
                   </RouterLink>
                 </div>

@@ -9,6 +9,9 @@ import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import Code from "@editorjs/code";
 import LinkTool from "@editorjs/link";
+import ImageTool from "@editorjs/image";
+import { NotificationType, showNotification } from "../../service/notification";
+import { uploadToCloudinary } from "../../service/utils";
 
 interface EditorProps {
   onChange?: (data: any) => void;
@@ -53,6 +56,15 @@ const Editor: React.FC<EditorProps> = ({ onChange, initialData }) => {
               endpoint: "/api/link-preview",
             },
           },
+          image: {
+            class: ImageTool as BlockToolConstructable | any,
+            config: {
+              // Direct upload to Cloudinary
+              uploader: {
+                uploadByFile: uploadToCloudinary,
+              },
+            },
+          },
         },
 
         data: initialData,
@@ -69,7 +81,7 @@ const Editor: React.FC<EditorProps> = ({ onChange, initialData }) => {
           editorRef.current = editor;
         })
         .catch((reason) => {
-          console.log("it failed: ", reason);
+          showNotification("Editor Plugin Error: ", NotificationType.ERROR);
         });
     }
   }, []);

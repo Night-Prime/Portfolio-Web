@@ -32,3 +32,10 @@ declare module '@editorjs/link' {
         constructor(config?: BlockToolConstructorOptions);
     }
 }
+
+declare module '@editorjs/image' {
+    import { BlockTool, BlockToolConstructorOptions } from '@editorjs/editorjs';
+    export default class ImageTool implements BlockTool {
+        constructor(config?: BlockToolConstructorOptions);
+    }
+}

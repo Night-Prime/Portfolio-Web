@@ -51,8 +51,8 @@ export function useFetch<T = any>(
                 default:
                     throw new Error(`Unsupported method: ${method}`);
             }
-
-            setData(response.data);
+            if (response)
+                setData(response.data);
         } catch (err) {
             setError(err instanceof Error ? err : new Error('An unknown error occurred'));
         } finally {

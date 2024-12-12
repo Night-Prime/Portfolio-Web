@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Swal from "sweetalert2";
 import { NotificationType, showNotification } from './notification';
+import { useNavigate } from 'react-router';
 
 interface ResponseData<T = any> {
     status: string;
@@ -10,16 +11,21 @@ interface ResponseData<T = any> {
 
 class ApiClient {
     private instance: AxiosInstance;
+    private navigate: (path: string) => void;
 
     constructor() {
         this.instance = axios.create({
             baseURL: process.env.REACT_APP_BACKEND_URL,
-            timeout: 10000, // 10 seconds timeout
+            timeout: 30000,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
         });
+
+        this.navigate = (path: string) => {
+            window.location.href = path;
+        };
 
         this.initializeInterceptors();
     }
@@ -57,31 +63,28 @@ class ApiClient {
     }
 
     private handleHttpError(response: AxiosResponse) {
-        const { status, data } = response;
+        const { status } = response;
 
         switch (status) {
             case 400:
                 showNotification('Bad Request, Try Again!', NotificationType.ERROR)
-                console.error('Bad Request:', data);
                 break;
             case 401:
                 this.handleUnauthorized();
                 break;
             case 403:
-                showNotification('Forbidden: Access Denied', NotificationType.ERROR)
-                console.error('Forbidden:', data);
+                showNotification('Forbidden: Access Denied', NotificationType.ERROR);
+                localStorage.removeItem('authToken');
+                this.navigate('/');
                 break;
             case 404:
                 showNotification('Resource Not Found', NotificationType.INFO)
-                console.error('Not Found:', data);
                 break;
             case 500:
                 showNotification('Server Error', NotificationType.ERROR)
-                console.error('Server Error:', data);
                 break;
             default:
                 showNotification('Unexpected Error, Try Again!', NotificationType.ERROR)
-                console.error('Unexpected Error:', data);
         }
     }
 
@@ -96,39 +99,55 @@ class ApiClient {
         window.location.href = '/';
     }
 
-    async get<T>(url: string, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+    async get<T>(url: string, config?: AxiosRequestConfig): Promise<ResponseData<T> | null> {
         try {
             const response = await this.instance.get<ResponseData<T>>(url, config);
             return response.data;
         } catch (error) {
-            throw error;
+            this.handleRequestError(error);
+            return null;
         }
     }
 
-    async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+    async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ResponseData<T> | null> {
         try {
             const response = await this.instance.post<ResponseData<T>>(url, data, config);
             return response.data;
         } catch (error) {
-            throw error;
+            this.handleRequestError(error);
+            return null;
         }
     }
 
-    async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+    async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ResponseData<T> | null> {
         try {
             const response = await this.instance.put<ResponseData<T>>(url, data, config);
             return response.data;
         } catch (error) {
-            throw error;
+            this.handleRequestError(error);
+            return null;
         }
     }
 
-    async delete<T>(url: string, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+    async delete<T>(url: string, config?: AxiosRequestConfig): Promise<ResponseData<T> | null> {
         try {
             const response = await this.instance.delete<ResponseData<T>>(url, config);
             return response.data;
         } catch (error) {
-            throw error;
+            this.handleRequestError(error);
+            return null;
+        }
+    }
+
+    private handleRequestError(error: any) {
+        if (error.response) {
+            this.handleHttpError(error.response);
+        } else if (error.request) {
+            this.handleNetworkError(error);
+        } else {
+
+            showNotification('Unexpected Error, Try Again!', NotificationType.ERROR);
+            console.error('Error', error.message);
         }
     }
 }

@@ -2,6 +2,7 @@ export interface Article {
     userId: string;
     published: boolean;
     title: string;
+    media?: string | any;
     content: Array<{
         id: string,
         type: string,

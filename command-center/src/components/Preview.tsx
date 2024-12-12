@@ -7,11 +7,9 @@ interface ArticleDetails {
 }
 
 const Preview: React.FC<ArticleDetails> = ({ article }) => {
-  const { title, content } = article;
+  const { title, content, media } = article;
 
-  useEffect(() => {
-    console.log("Preview content:", content);
-  }, [content]);
+  useEffect(() => {}, [content, media]);
 
   return (
     <PrimaryContainer>
@@ -19,6 +17,15 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
         <h1 className="w-full text-4xl text-center my-6 font-bold">
           <span className="text-highlight">"{title}"</span>
         </h1>
+        {media && (
+          <div className="w-full h-64 border-2 border-gray-300 rounded-lg overflow-hidden mb-4">
+            <img
+              src={URL.createObjectURL(media)}
+              alt="Uploaded"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
         <div className="w-full text-justify p-4">
           {content.map((block) => {
             switch (block.type) {
@@ -50,6 +57,22 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
                   >
                     {block.data.text}
                   </blockquote>
+                );
+              case "image":
+                return (
+                  <div className="w-full max-w-md mx-auto my-2">
+                    <img
+                      key={block.id}
+                      src={block.data.file.url}
+                      alt={block.data.caption || "Image"}
+                      className="w-full h-auto object-cover rounded-lg shadow-md"
+                    />
+                    {block.data.caption && (
+                      <p className="text-center text-sm text-gray-600 mt-2">
+                        {block.data.caption}
+                      </p>
+                    )}
+                  </div>
                 );
               default:
                 return null;
