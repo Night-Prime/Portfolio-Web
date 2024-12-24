@@ -20,6 +20,7 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
         {media && (
           <div className="w-full h-64 border-2 border-gray-300 rounded-lg overflow-hidden mb-4">
             <img
+              loading="eager"
               src={URL.createObjectURL(media)}
               alt="Uploaded"
               className="w-full h-full object-cover"
@@ -31,7 +32,7 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
             switch (block.type) {
               case "paragraph":
                 return (
-                  <p key={block.id} className="mb-4">
+                  <p key={block.id} className="font-paragraph mb-4">
                     {block.data.text}
                   </p>
                 );
@@ -43,7 +44,10 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
                 );
               case "list":
                 return (
-                  <ul key={block.id} className="list-disc list-inside mb-4">
+                  <ul
+                    key={block.id}
+                    className="font-paragraph list-disc list-inside mb-4"
+                  >
                     {block.data.items?.map((item: any, index: number) => (
                       <li key={`${block.id}-${index}`}>{item}</li>
                     ))}
@@ -62,6 +66,7 @@ const Preview: React.FC<ArticleDetails> = ({ article }) => {
                 return (
                   <div className="w-full max-w-md mx-auto my-2">
                     <img
+                      loading="eager"
                       key={block.id}
                       src={block.data.file.url}
                       alt={block.data.caption || "Image"}

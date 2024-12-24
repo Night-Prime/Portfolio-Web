@@ -1,0 +1,23 @@
+/* editor-styles.css */
+.codex-editor {
+  /* Apply paragraph font to the main editor content */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.codex-editor h1.ce-header,
+.codex-editor h2.ce-header,
+.codex-editor h3.ce-header,
+.codex-editor h4.ce-header {
+  /* Apply header font to all heading levels */
+  font-family: "Oxygen", sans-serif;
+}
+
+.codex-editor .ce-paragraph {
+  /* Apply paragraph font to regular paragraphs */
+  font-family: "Cormorant Garamond", serif;
+}
+
+.codex-editor .ce-quote {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+}

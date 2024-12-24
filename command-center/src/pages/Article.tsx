@@ -45,6 +45,7 @@ const Article: React.FC = () => {
         {media && (
           <div className="w-full h-64 border-2 border-gray-300 rounded-lg overflow-hidden mb-4">
             <img
+              loading="eager"
               src={media}
               alt="Uploaded"
               className="w-full h-full object-cover"
@@ -57,7 +58,7 @@ const Article: React.FC = () => {
               switch (block.type) {
                 case "paragraph":
                   return (
-                    <p key={block.id} className="mb-4">
+                    <p key={block.id} className="mb-4 font-paragraph">
                       {block.data.text}
                     </p>
                   );
@@ -71,7 +72,12 @@ const Article: React.FC = () => {
                   return (
                     <ul key={block.id} className="list-disc list-inside mb-4">
                       {block.data.items?.map((item: any, index: number) => (
-                        <li key={`${block.id}-${index}`}>{item}</li>
+                        <li
+                          className="font-paragraph"
+                          key={`${block.id}-${index}`}
+                        >
+                          {item}
+                        </li>
                       ))}
                     </ul>
                   );
@@ -88,6 +94,7 @@ const Article: React.FC = () => {
                   return (
                     <div className="w-full max-w-md mx-auto my-2">
                       <img
+                        loading="lazy"
                         key={block.id}
                         src={block.data.file.url}
                         alt={block.data.caption || "Image"}

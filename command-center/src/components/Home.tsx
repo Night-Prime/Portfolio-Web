@@ -37,12 +37,14 @@ const Home: React.FC = () => {
                     <div className="flex flex-col items-center">
                       {blog.media ? (
                         <img
+                          loading="eager"
                           src={blog.media}
                           alt={blog.title}
                           className="w-[150px] h-[150px] rounded-md mb-2 object-cover"
                         />
                       ) : (
                         <img
+                          loading="eager"
                           src="https://via.placeholder.com/150"
                           alt={blog.title}
                           className="w-[150px] h-[150px] rounded-md mb-2 object-cover"

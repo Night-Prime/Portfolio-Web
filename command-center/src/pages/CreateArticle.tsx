@@ -122,30 +122,32 @@ const CreateArticle: React.FC = () => {
       {previewArticle ? (
         <Preview article={articleContent} />
       ) : (
-        <div className="h-full w-full m-6 flex flex-col">
-          <h1 className="w-full text-center my-4 font-light italic">
+        <div className="mt-[5vw] h-full w-full m-6 flex flex-col">
+          {/* <h1 className="w-full text-center my-4 font-light italic">
             Share your new ideas, experience & lessons with the world.
-          </h1>
+          </h1> */}
           <form className="w-full h-auto flex flex-col">
             <input
               type="text"
               value={articleContent.title}
               name="title"
               onChange={handleTitleChange}
-              className="h-[20vh] w-[90%] border-none bg-transparent placeholder:text-6xl text-6xl text-center placeholder:text-center placeholder:italic italic"
+              className="h-[10vh] w-full border-none bg-transparent placeholder:text-6xl text-6xl text-center placeholder:text-center placeholder:italic italic"
               placeholder="Title"
               style={{ outline: "none" }}
               required
             />
-            <div className="relative w-[50%] my-6 mx-auto h-60 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden flex items-center justify-center">
+            <div className="mx-auto w-full h-[.5px] mb-8 bg-black rounded-2xl"></div>
+            <div className="relative w-[80%] mx-auto my-6 h-72 xl:h-[60vh] border-2 border-dashed border-gray-300 rounded-lg overflow-hidden flex items-center justify-center">
               {articleContent.media ? (
                 <img
+                  loading="lazy"
                   src={URL.createObjectURL(articleContent.media)}
                   alt="Uploaded"
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-gray-400">Upload an image</span>
+                <span className="text-gray-400">Upload Cover Image</span>
               )}
               <input
                 type="file"

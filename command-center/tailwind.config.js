@@ -7,6 +7,11 @@ module.exports = {
         primary: "#f5f3e6",
         highlight: "#FC703B",
       },
+      fontFamily: {
+        header: ["Oxygen", "sans-serif"],
+        paragraph: ["Cormorant Garamond", "serif"],
+        highlight: ["Oxygen", "sans-serif"],
+      },
     },
   },
   plugins: [],

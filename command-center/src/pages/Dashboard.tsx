@@ -13,9 +13,9 @@ const Dashboard: React.FC = () => {
     <PrimaryContainer>
       <div className="h-auto w-full flex flex-col">
         <Navbar buttonDetails={navDetails} />
-        <div className="h-full w-full my-10">
+        <div className="mt-[5vw] h-full w-full my-10">
           <h1 className="text-9xl text-center">DASHBOARD.</h1>
-          <div className="mx-auto w-[80%] h-1 my-6"></div>
+          <div className="mx-auto w-[90%] h-2 bg-black my-6 rounded-2xl"></div>
         </div>
       </div>
       <div className="w-[99%] h-auto mx-auto overflow-y-scroll">
