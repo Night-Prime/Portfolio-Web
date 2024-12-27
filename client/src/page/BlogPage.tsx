@@ -62,7 +62,10 @@ const Hero = () => {
       animate="visible"
       className="h-1/3 w-full flex justify-center items-center font-SF py-6"
     >
-      <motion.h1 variants={scaleChild} className="text-[15rem] font-bold">
+      <motion.h1
+        variants={scaleChild}
+        className="text-6xl xl:text-[15rem] my-6 font-bold"
+      >
         ARTICLES.
       </motion.h1>
     </motion.div>
@@ -79,6 +82,8 @@ const Grid = () => {
     error,
     refetch,
   } = useFetch<Blog[]>("/post/all");
+
+  console.log("Here: ", blogs);
 
   return (
     <motion.div className="h-full my-10 w-full flex flex-col font-SF items-center gap-6">
@@ -116,7 +121,7 @@ const Grid = () => {
         variants={reveal}
         initial="hidden"
         animate="visible"
-        className="w-[95%] h-[110vh] grid grid-cols-3 gap-4"
+        className="w-[95%] h-full rounded-full grid grid-cols-3 gap-4"
       >
         {blogs && blogs.length > 0 ? (
           blogs.map((blog) => (

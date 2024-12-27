@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         Flux: ["Afacad Flux", "sans-serif"],
         SF: ["SF Pro Display", "sans-serif"],
+        paragraph: ["Cormorant Garamond", "serif"],
       },
     },
   },
