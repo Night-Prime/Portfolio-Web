@@ -27,8 +27,10 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // Needed for some cloud providers
-        ca: process.env.CA,
+        rejectUnauthorized: false,
+        ca: fs
+          .readFileSync(path.resolve(__dirname, "./certs/aiven-ca.pem"))
+          .toString(),
       },
     },
   },

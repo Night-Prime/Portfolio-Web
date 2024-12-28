@@ -69,6 +69,8 @@ const Login: React.FC = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/dashboard");
     }
+
+    setIsLoading(false);
   };
 
   if (isLoading) {
