@@ -6,7 +6,7 @@ const dotenv_1 = require("dotenv");
 exports.PORT = process.env.PORT || 4200;
 exports.NODE_ENV = process.env.NODE_ENV || 'development';
 exports.corsOptions = {
-    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : 'http://localhost:3000/',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
 };

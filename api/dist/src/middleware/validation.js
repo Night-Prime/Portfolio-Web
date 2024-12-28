@@ -50,10 +50,10 @@ const createPostValidation = () => {
             .isString()
             .withMessage("Title is required."),
         (0, express_validator_1.body)("content")
+            .isObject()
             .notEmpty()
             .withMessage("Fill in content")
-            .isLength({ min: 2 })
-            .withMessage("Name must be at least 2 characters long."),
+            .withMessage("Article incomplete without an article"),
         (0, express_validator_1.body)("published")
             .notEmpty()
             .withMessage("Publish state is required!")
@@ -67,7 +67,7 @@ const createPostValidation = () => {
 exports.createPostValidation = createPostValidation;
 const grabPostByIdValidation = () => {
     return [
-        (0, express_validator_1.param)("postId")
+        (0, express_validator_1.param)("id")
             .isUUID()
             .notEmpty()
             .withMessage("Post ID is required!")

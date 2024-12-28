@@ -15,17 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const post_1 = require("../controllers/post");
 const validation_1 = require("../middleware/validation");
+const multer_1 = __importDefault(require("multer"));
+const storage_1 = require("../config/storage");
+const auth_1 = require("../middleware/auth");
+const upload = (0, multer_1.default)({ storage: storage_1.storage });
 const router = express_1.default.Router();
-router.post("/create", (0, validation_1.createPostValidation)(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/create", upload.single('media'), auth_1.authenticate, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, post_1.createPost)(req, res, next);
 }));
-router.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/all", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, post_1.getPosts)(req, res, next);
 }));
-router.get("/:postId", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/byAuthor", auth_1.authenticate, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, post_1.getPostsByAuthor)(req, res, next);
+}));
+router.get("/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, post_1.getPostById)(req, res, next);
 }));
-router.delete("/:postId", (0, validation_1.grabPostByIdValidation)(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete("/:id", (0, validation_1.grabPostByIdValidation)(), auth_1.authenticate, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, post_1.deletePost)(req, res, next);
 }));
 exports.default = router;

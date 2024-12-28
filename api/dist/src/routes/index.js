@@ -20,7 +20,7 @@ const auth_1 = require("../middleware/auth");
 const router = express_1.default.Router();
 router.use("/user", user_1.default);
 // router.use("/tag", TagRoutes);
-router.use("/post", auth_1.authenticate, post_1.default);
+router.use("/post", post_1.default);
 router.use("/comment", auth_1.authenticate, comment_1.default);
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({

@@ -28,7 +28,6 @@ exports.Comment = comment_1.default;
  */
 const initializeModels = () => __awaiter(void 0, void 0, void 0, function* () {
     const sequelize = yield (0, database_1.getSequelizeInstance)();
-    console.log("Info: ", sequelize);
     // Initialize models first
     user_1.default.init({
         id: {
@@ -55,6 +54,10 @@ const initializeModels = () => __awaiter(void 0, void 0, void 0, function* () {
             type: sequelize_1.DataTypes.TEXT,
             allowNull: true,
         },
+        view: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: true,
+        },
     }, {
         sequelize,
         modelName: 'User',
@@ -74,8 +77,12 @@ const initializeModels = () => __awaiter(void 0, void 0, void 0, function* () {
             allowNull: false,
         },
         content: {
-            type: sequelize_1.DataTypes.TEXT,
+            type: sequelize_1.DataTypes.JSON,
             allowNull: false,
+        },
+        media: {
+            type: sequelize_1.DataTypes.STRING,
+            allowNull: true,
         },
         published: {
             type: sequelize_1.DataTypes.BOOLEAN,
@@ -89,6 +96,10 @@ const initializeModels = () => __awaiter(void 0, void 0, void 0, function* () {
                 key: 'id'
             }
         },
+        view: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: true,
+        }
     }, {
         sequelize,
         modelName: 'Post',
