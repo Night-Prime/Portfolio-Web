@@ -29,9 +29,9 @@ module.exports = {
       ssl: {
         require: true,
         rejectUnauthorized: false,
-        ca: fs
-          .readFileSync(path.resolve(__dirname, "./certs/aiven-ca.pem"))
-          .toString(),
+        // ca: fs
+        //   .readFileSync(path.resolve(__dirname, "./certs/aiven-ca.pem"))
+        //   .toString(),
       },
     },
   },
