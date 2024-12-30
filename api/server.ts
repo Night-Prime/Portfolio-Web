@@ -14,7 +14,7 @@ const server = http.createServer(app);
 const startServer = async (): Promise<void> => {
     try {
         await initializeModels();
-        server.listen(PORT, '0.0.0.0', () => {
+        server.listen(PORT, () => {
             logger.info(`Dhaniel Service running on PORT:${PORT}`)
         })
     } catch (error) {
