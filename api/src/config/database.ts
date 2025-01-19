@@ -39,12 +39,14 @@ const createPoolConfig = (env: DbEnv): PoolConfig => ({
     database: env.DB_NAME,
     password: env.DB_PASS,
     port: parseInt(env.DB_PORT, 10),
+    ssl: true,
 });
 
 // Function to create Sequelize configuration
 const createSequelizeConfig = (env: DbEnv): SequelizeOptions => ({
     host: env.DB_HOST,
     dialect: 'postgres',
+    ssl: true,
     logging: (msg) => logger.debug(msg),
 });
 
