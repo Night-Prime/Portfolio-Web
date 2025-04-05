@@ -1,9 +1,8 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import logo from "../assets/images/logo-white.png";
 import { Link } from "react-router-dom";
 import { animations } from "../shared/animation";
 import { useRef, useState } from "react";
-import useSize from "../hooks/useSize";
 import CameraIcon from "@mui/icons-material/Camera";
 import { Cancel } from "@mui/icons-material";
 
@@ -20,19 +19,7 @@ const Navbar: React.FC = () => {
     setMenu(!menu);
   };
 
-  const dimension = useSize();
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", `${dimension.height}px`],
-  });
-
-  // const textColor = useTransform(
-  //   scrollYProgress,
-  //   [0, 0.75, 1],
-  //   ["#FFFFFF", "#FFFFFF", "#000000"]
-  // );
-
   const containerVariants = animations.containerVariants;
   const childVariants = animations.childVariants;
 

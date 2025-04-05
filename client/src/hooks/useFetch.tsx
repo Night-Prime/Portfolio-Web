@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { makeRequest } from "../service/request";
 
 interface useFetchState<T> {
@@ -19,7 +19,7 @@ function useFetch<T = any>(
   const [error, setError] = useState<string | null>(null);
   const updatedOptions = JSON.stringify(options);
 
-  const fetchData = async (signal: AbortSignal) => {
+  const fetchData = useCallback(async (signal: AbortSignal) => {
     try {
       setLoading(true);
       setError(null);
@@ -41,7 +41,7 @@ function useFetch<T = any>(
     } finally {
       if (!signal.aborted) setLoading(false);
     }
-  };
+  }, [url]);
 
   useEffect(() => {
     const controller = new AbortController();
