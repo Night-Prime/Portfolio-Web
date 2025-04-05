@@ -71,9 +71,9 @@ const Projects: React.FC = () => {
             </motion.div>
           </motion.div>
           <img
-            src="https://ik.imagekit.io/0y99xuz0yp/Event%20booking.webp?updatedAt=1729069370905"
+            src="https://ik.imagekit.io/0y99xuz0yp/Screenshot%202025-04-05%20at%2009.31.19.png?updatedAt=1743841975231"
             alt="Mayflower screenshot"
-            className="object-cover w-[100%] h-[100%] object-top rounded-2xl"
+            className="object-cover w-[100%] h-[100%] rounded-2xl"
           />
         </div>
         <div

@@ -9,9 +9,9 @@ import { Cancel } from "@mui/icons-material";
 
 const navLinks = [
   { name: "Me", path: "/" },
-  { name: "Blog", path: "/blog" },
-  { name: "Projects", path: "/projects" },
-  { name: "Products", path: "/products" },
+  { name: "Blog", path: "https://medium.com/@danielabatibabatunde1"},
+  { name: "Projects", path: "https://github.com/Night-Prime"},
+  // { name: "Products", path: "/products" },
 ];
 
 const Navbar: React.FC = () => {

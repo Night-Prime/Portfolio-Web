@@ -37,7 +37,7 @@ const SubHero: React.FC = () => {
             <Card
               title="Projects"
               description="Couple of fun, exciting work in progress & finished projects that I've got to work on with some amazing devs & designers."
-              link="/"
+              link="https://github.com/Night-Prime"
             />
             <Card
               title="Products"
@@ -47,7 +47,7 @@ const SubHero: React.FC = () => {
             <Card
               title="Articles"
               description="I learn a ton of concepts, read research papers and tutorials, I intend to break them down in a way it benefits the readers."
-              link="/"
+              link="https://medium.com/@danielabatibabatunde1"
             />
           </motion.div>
         </motion.div>

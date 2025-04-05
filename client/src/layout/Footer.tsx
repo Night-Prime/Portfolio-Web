@@ -4,6 +4,7 @@ import { animations } from "../shared/animation";
 
 const Footer: React.FC = () => {
   const childReveal = useScrollAnimation(animations.revealChildren);
+  const year = new Date().getFullYear();
   return (
     <motion.div className="h-auto md:h-screen w-full flex items-end justify-center font-Flux overflow-y-hidden">
       <motion.div className="flex flex-col bg-black w-full h-full md:h-[80%]">
@@ -77,7 +78,7 @@ const Footer: React.FC = () => {
             {...childReveal}
             className="mx-auto text-white text-4xl font-semibold text-center"
           >
-            Dhaniel. 2024.
+            Dhaniel. {year}.
           </motion.h1>
         </motion.div>
       </motion.div>
