@@ -13,7 +13,6 @@ const Article = () => {
     loading,
     data: article,
     error,
-    refetch,
   } = useFetch<Blog>(`/post/${id}`);
 
   if (loading) {

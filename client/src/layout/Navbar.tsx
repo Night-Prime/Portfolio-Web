@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "../assets/images/logo-white.png";
 import { Link } from "react-router-dom";
 import { animations } from "../shared/animation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useSize from "../hooks/useSize";
 import CameraIcon from "@mui/icons-material/Camera";
 import { Cancel } from "@mui/icons-material";
@@ -27,11 +27,11 @@ const Navbar: React.FC = () => {
     offset: ["start start", `${dimension.height}px`],
   });
 
-  const textColor = useTransform(
-    scrollYProgress,
-    [0, 0.75, 1],
-    ["#FFFFFF", "#FFFFFF", "#000000"]
-  );
+  // const textColor = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.75, 1],
+  //   ["#FFFFFF", "#FFFFFF", "#000000"]
+  // );
 
   const containerVariants = animations.containerVariants;
   const childVariants = animations.childVariants;

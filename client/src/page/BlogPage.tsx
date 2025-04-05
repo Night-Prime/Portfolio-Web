@@ -77,10 +77,7 @@ const Grid = () => {
   const revealChild = animations.childVariants;
 
   const {
-    loading,
     data: blogs,
-    error,
-    refetch,
   } = useFetch<Blog[]>("/post/all");
 
   console.log("Here: ", blogs);

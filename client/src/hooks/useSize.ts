@@ -23,7 +23,7 @@ const useSize = () => {
         return () => {
             window.removeEventListener("resize", handleWindowSizeChange);
         };
-    }, [handleWindowSizeChange]);
+    }, []);
 
     return dimensions;
 };

@@ -17,6 +17,7 @@ function useFetch<T = any>(
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const updatedOptions = JSON.stringify(options);
 
   const fetchData = async (signal: AbortSignal) => {
     try {
@@ -53,7 +54,8 @@ function useFetch<T = any>(
       clearTimeout(handler);
       controller.abort();
     };
-  }, [url, JSON.stringify(options)]);
+
+  }, [url, updatedOptions, debounceDelay, fetchData]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
