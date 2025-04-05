@@ -2,7 +2,6 @@ import { useParams } from "react-router";
 import useFetch from "../hooks/useFetch";
 import { Blog } from "../shared/interface";
 import Navbar from "../layout/Navbar";
-import Footer from "../layout/Footer";
 import { motion } from "framer-motion";
 import { animations } from "../shared/animation";
 

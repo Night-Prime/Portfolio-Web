@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { makeRequest } from "../service/request";
 
 interface useFetchState<T> {

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import useScrollAnimation from "../hooks/useScrollAnimation";
 import { animations } from "../shared/animation";
-import me from "../assets/images/Dhaniel-5-2023-1.jpg";
 
 type skillProps = {
   skill: string;
