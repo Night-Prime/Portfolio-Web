@@ -70,7 +70,7 @@ function useFetch<T = any>(
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [url, pollingInterval]);
+  }, [url, pollingInterval, fetchData]);
 
   return {
     loading,

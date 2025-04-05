@@ -1,4 +1,4 @@
-import { motion, useScroll } from "framer-motion";
+import { motion} from "framer-motion";
 import logo from "../assets/images/logo-white.png";
 import { Link } from "react-router-dom";
 import { animations } from "../shared/animation";
